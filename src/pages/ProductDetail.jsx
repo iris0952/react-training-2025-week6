@@ -74,7 +74,11 @@ function ProductDetail() {
                         </option>
                     ))}
                     </select>
-                    <button onClick={() => addCartItem(product.id, qtySelect)} type="button" className="btn btn-primary d-flex align-items-center gap-2">
+                    <button 
+                      disabled={isLoading}
+                      onClick={() => addCartItem(product.id, qtySelect)} 
+                      type="button" 
+                      className="btn btn-primary d-flex align-items-center gap-2">
                         加入購物車
                         { isLoading && (
                             <ReactLoading
