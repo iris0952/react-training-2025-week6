@@ -78,22 +78,23 @@ function Cart() {
         const { message, ...user} = data;
         const userInfo = {
             data: {
-            user,
-            message
+                user,
+                message
             }
         }
-        alert('已建立訂單');
         checkout(userInfo);
-        getCart();
+        reset();
     })
 
     const checkout = async(data) => {
         setIsScreenLoading(true);
         try {
-            await axios.post(`${BASE_URL}/v2/api/${API_PATH}/order`, data);
-            reset();
+            const res =await axios.post(`${BASE_URL}/v2/api/${API_PATH}/order`, data);
+            alert(res.data.message); //"已建立訂單"
+            getCart();
         } catch (error) {
-            alert('結帳失敗！')
+            const errorMessage = error.response?.data?.message || '未知錯誤';
+            alert(`結帳失敗: ${errorMessage}`);
         } finally {
             setIsScreenLoading(false);
         }

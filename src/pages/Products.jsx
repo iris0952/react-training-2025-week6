@@ -76,7 +76,11 @@ function Products(){
                         >
                             查看更多
                         </Link>
-                        <button onClick={()=>addCartItem(product.id, 1)} type="button" className="btn btn-outline-danger d-flex align-items-center gap-2">
+                        <button
+                          disabled={isLoading}
+                          onClick={()=>addCartItem(product.id, 1)} 
+                          type="button" 
+                          className="btn btn-outline-danger d-flex align-items-center gap-2">
                             加到購物車
                             { isLoading && (
                             <ReactLoading
